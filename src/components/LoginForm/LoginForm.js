@@ -75,7 +75,6 @@ class LoginForm extends Component {
           />
         </div>
         <footer className='LoginForm__footer'>
-          <Link className='LoginForm__link' to='/register'>Don't have an account?</Link>
           <Button type='submit'>
             Login
           </Button>

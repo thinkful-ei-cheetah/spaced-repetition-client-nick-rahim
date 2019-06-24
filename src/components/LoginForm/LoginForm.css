@@ -9,13 +9,3 @@
   align-items: center;
   justify-content: flex-end;
 }
-
-.LoginForm__link {
-  color: black;
-  text-decoration: none;
-}
-
-.LoginForm__link:hover {
-  text-decoration: underline;
-  color: dodgerblue;
-}
