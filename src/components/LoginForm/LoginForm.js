@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Input, Label } from '../Form/Form'
 import AuthApiService from '../../services/auth-api-service'
 import UserContext from '../../contexts/UserContext'
 import Button from '../Button/Button'
+import './LoginForm.css'
 
 class LoginForm extends Component {
   static defaultProps = {
@@ -47,7 +49,7 @@ class LoginForm extends Component {
         className='LoginForm'
         onSubmit={this.handleSubmit}
       >
-        <div role='alert'>
+        <div className='error' role='alert'>
           {error && <p>{error}</p>}
         </div>
         <div>
@@ -72,9 +74,12 @@ class LoginForm extends Component {
             required
           />
         </div>
-        <Button type='submit'>
-          Login
-        </Button>
+        <footer className='LoginForm__footer'>
+          <Link className='LoginForm__link' to='/register'>Don't have an account?</Link>
+          <Button type='submit'>
+            Login
+          </Button>
+        </footer>
       </form>
     )
   }
