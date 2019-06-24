@@ -41,6 +41,7 @@ class RegistrationForm extends Component {
     const { error } = this.state
     return (
       <form
+        className='RegistrationForm'
         onSubmit={this.handleSubmit}
       >
         <div role='alert'>
@@ -78,12 +79,12 @@ class RegistrationForm extends Component {
             required
           />
         </div>
-        <footer>
+        <footer className='RegistrationForm__footer'>
+          <Link className='RegistrationForm__link' to='/login'>Already have an account?</Link>
           <Button type='submit'>
             Sign up
           </Button>
           {' '}
-          <Link to='/login'>Already have an account?</Link>
         </footer>
       </form>
     )

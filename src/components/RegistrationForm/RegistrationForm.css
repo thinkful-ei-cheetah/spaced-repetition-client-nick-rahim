@@ -1,0 +1,21 @@
+.RegistrationForm {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.RegistrationForm__footer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.RegistrationForm__link {
+  color: black;
+  text-decoration: none;
+}
+
+.RegistrationForm__link:hover {
+  text-decoration: underline;
+  color: dodgerblue;
+}
