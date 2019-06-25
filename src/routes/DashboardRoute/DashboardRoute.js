@@ -18,13 +18,10 @@ class DashboardRoute extends Component {
   render() {
     return (
       <section>
-        {/* {this.context.language} */}
-        {this.context.totalScore}
-        {/* {this.context.words[0].original} */}
+        <UserInfo />
         <div>
           <WordsList words={this.context.words} />
         </div>
-        <UserInfo />
       </section>
     );
   }
