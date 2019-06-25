@@ -11,11 +11,6 @@ class DashboardRoute extends Component {
       const { language, words } = response;
       this.context.setLanguage(language);
       this.context.setWords(words);
-      console.log(words)
-      // this.context.setTotalScore(language.totalScore);
-      console.log(this.context.language);
-      console.log(this.context.words);
-      console.log(this.context.words[0].original);
     });
   }
 
