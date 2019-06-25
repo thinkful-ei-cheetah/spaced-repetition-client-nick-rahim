@@ -1,0 +1,27 @@
+.UserInfo {
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserInfo__score {
+  font-size: 175%;
+  margin-bottom: 25px;
+}
+
+.UserInfo__link {
+  text-decoration: none;
+  color: green;
+  border: 1px solid green;
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px 12px;
+  transition: 0.5s;
+}
+
+.UserInfo__link:hover {
+  background-color: #3E8E41;
+  color: white;
+}
