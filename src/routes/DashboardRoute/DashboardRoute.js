@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LanguageApiService from '../../services/language-api-service';
 import LanguageContext from '../../contexts/LanguageContext';
+import WordsList from '../../components/Words/WordList';
 
 class DashboardRoute extends Component {
   static contextType = LanguageContext;
@@ -22,6 +23,9 @@ class DashboardRoute extends Component {
         {/* {this.context.language} */}
         {this.context.totalScore}
         {/* {this.context.words[0].original} */}
+        <div>
+          <WordsList words={this.context.words} />
+        </div>
       </section>
     );
   }

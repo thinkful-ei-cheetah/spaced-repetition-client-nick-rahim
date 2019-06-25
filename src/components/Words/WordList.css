@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+}
+
+.WordList_header {
+  font-size: 2em;
+}
+
+.WordList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
