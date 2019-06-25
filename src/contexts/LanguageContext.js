@@ -22,7 +22,10 @@ export class LanguageProvider extends Component {
   }
 
   setLanguage = language => {
-    this.setState({ language })
+    this.setState({ 
+      language: language.name,
+      totalScore: language.total_score
+    })
   }
 
   setWords = words => {
