@@ -8,9 +8,9 @@ class DashboardRoute extends Component {
   componentDidMount() {
     LanguageApiService.getLanguage().then(response => {
       const { language, words } = response;
-      this.context.setLanguage(language);
+      this.context.setLanguage(language.name);
       this.context.setWords(words);
-      this.context.setTotalScore();
+      this.context.setTotalScore(language.totalScore);
       console.log(this.context.language);
       console.log(this.context.words);
       console.log(this.context.words[0].original);
