@@ -2,12 +2,26 @@ ul {
   list-style: none;
 }
 
+.WordList_title {
+  text-align: center;
+  margin: 0;
+  margin-top: 20px;
+  font-size: 1.5em;
+  text-decoration: underline;
+  color: dodgerblue;
+}
+
 .WordList_header {
-  font-size: 2em;
+  margin-top: 5px;
 }
 
 .WordList {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.correct li,
+.incorrect li {
+  text-align: center;
 }
