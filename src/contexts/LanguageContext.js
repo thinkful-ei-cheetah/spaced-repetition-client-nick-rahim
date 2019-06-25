@@ -22,29 +22,33 @@ export class LanguageProvider extends Component {
   }
 
   setLanguage = language => {
-    this.setState({ language })
+    this.setState({ 
+      language: language.name,
+      totalScore: language.total_score
+    })
   }
 
   setWords = words => {
     this.setState({ words })
   }
 
-  setTotalScore = () => {
-    if (this.state.words.length === 0) {
-      this.setState({ totalScore: 0 })
-    } else {
-      let totalCorrects = 0
-      let totalIncorrects = 0
+  setTotalScore = (totalScore) => {
+    // if (this.state.words.length === 0) {
+    //   this.setState({ totalScore: 0 })
+    // } else {
+    //   let totalCorrects = 0
+    //   let totalIncorrects = 0
 
-      this.state.words.forEach(word => {
-        totalCorrects += word.correct_count
-        totalIncorrects += word.incorrect_count
-      })
+    //   this.state.words.forEach(word => {
+    //     totalCorrects += word.correct_count
+    //     totalIncorrects += word.incorrect_count
+    //   })
 
-      const totalScore = totalCorrects > totalIncorrects ? totalCorrects - totalIncorrects : 0
+    //   const totalScore = totalCorrects > totalIncorrects ? totalCorrects - totalIncorrects : 0
 
-      this.setState({ totalScore })
-    }
+    //   this.setState({ totalScore })
+    // }
+    this.setState({ totalScore })
   }
 
   setError = error => {

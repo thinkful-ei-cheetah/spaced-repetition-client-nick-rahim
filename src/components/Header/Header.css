@@ -10,6 +10,7 @@
 .Header h1 {
   font-weight: 200;
   margin: 0;
+  margin-left: 15px;
   align-self: center;
 }
 
