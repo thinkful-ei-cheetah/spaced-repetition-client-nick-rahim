@@ -1,0 +1,77 @@
+.Learning {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.Learning__word-stat {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Learning__total-score {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.Learning__prompt {
+  text-align: center;
+}
+
+.Learning__prompt h2 {
+  margin: 10px auto;
+  font-size: 1.5em;
+}
+
+.Learning__word {
+  display: block;
+  /* border: 1px solid red; */
+  padding: 50px;
+  padding-top: 25px;
+  font-size: 7em;
+}
+
+.Learning__answer-form {
+  margin: 0 auto;
+  max-width: 75%;
+}
+
+.Learning__answer-form-inputs {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+#learn-guess-input {
+  width: 65%;
+  margin-bottom: 0;
+}
+
+.Learning__answer-form-inputs button {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 690px) {
+  .Learning__word-stat {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .Learning__word-stat {
+    font-size: 65%;
+  }
+
+  .Learning__word {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Learning__word-stat {
+    font-size: 60%;
+  }
+
+  .Learning__word {
+    font-size: 3em;
+  }
+}
