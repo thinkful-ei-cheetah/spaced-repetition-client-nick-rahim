@@ -7,14 +7,16 @@ import LanguageApiService from '../../services/language-api-service';
 class Learning extends Component {
   constructor(props) {
     super(props);
+    let correctIncorrect;
     this.state = {
       guess: '',
       answer: '',
       isCorrect: '',
       nextWord: '',
-      totalScore: null,
-      wordCorrectCount: 0,
-      wordIncorrectCount: 0
+      totalScore: this.props.head.totalScore,
+      wordCorrectCount: this.props.head.wordCorrectCount,
+      wordIncorrectCount: this.props.head.wordIncorrectCount,
+      correctIncorrect: ''
     };
   }
 
@@ -22,7 +24,7 @@ class Learning extends Component {
     event.preventDefault();
     const { guess } = this.state;
     LanguageApiService.postGuess(guess).then(response => {
-      console.log('api', response, 'props', this.props);
+      console.log(this.state, this.props);
       const {
         answer,
         desk,
@@ -32,6 +34,8 @@ class Learning extends Component {
         wordCorrectCount,
         wordIncorrectCount
       } = response;
+
+      this.correctIncorrect = this.rightWrong(response.isCorrect);
 
       this.setState({
         answer,
@@ -45,6 +49,22 @@ class Learning extends Component {
     });
   };
 
+  rightWrong = answer => {
+    if (answer) {
+      return (
+        <h2 className='second-h2' style={{ color: 'green' }}>
+          {`You were correct! :D`}
+        </h2>
+      );
+    } else {
+      return (
+        <h2 className='second-h2' style={{ color: 'red' }}>
+          {`Good try, but not quite right :(`}
+        </h2>
+      );
+    }
+  };
+
   updateGuess(guess) {
     this.setState({ guess });
   }
@@ -54,21 +74,17 @@ class Learning extends Component {
       <div className='Learning'>
         <div className='Learning__word-stat'>
           <h4 className='Learning__correct'>
-            You have answered this word correctly{' '}
-            {this.props.head.wordCorrectCount} times.
+            You have answered this word correctly {this.state.wordCorrectCount}{' '}
+            times.
           </h4>
           <h4 className='Learning__incorrect'>
             You have answered this word incorrectly{' '}
-            {this.props.head.wordIncorrectCount} times.
+            {this.state.wordIncorrectCount} times.
           </h4>
         </div>
         <div className='Learning__total-score'>
           <main className='DisplayScore'>
-            {this.state.totalScore === true ? (
-              <p>Your total score is: {this.state.totalScore}</p>
-            ) : (
-              <p>Your total score is: {this.props.head.totalScore}</p>
-            )}
+            <p>Your total score is: {this.state.totalScore}</p>
           </main>
         </div>
         <div className='Learning__prompt'>
@@ -77,12 +93,16 @@ class Learning extends Component {
         </div>
         <div className='DisplayFeedback'>
           {this.state.answer && (
-            <p>{`The correct translation for ${this.props.head.nextWord} was ${
-              this.state.answer
-            } and you chose ${this.state.guess}!`}</p>
+            <div>
+              <p>
+                {`The correct translation for ${this.props.head.nextWord} was ${
+                  this.state.answer
+                } and you chose ${this.state.guess}!`}
+              </p>
+              <button className='try-another'>Try another word!</button>
+            </div>
           )}
         </div>{' '}
-        <button className='try-another'>Try another word!</button>
         <form
           className='Learning__answer-form'
           onSubmit={event => this.postGuessHandler(event)}
@@ -103,15 +123,7 @@ class Learning extends Component {
             <Button type='submit'>Submit your answer</Button>
           </div>
         </form>
-        {this.state.isCorrect === true ? (
-          <h2 className='second-h2' style={{ color: 'green' }}>
-            {`You were correct! :D`}
-          </h2>
-        ) : (
-          <h2 className='second-h2' style={{ color: 'red' }}>
-            {`Good try, but not quite right :(`}
-          </h2>
-        )}
+        {this.correctIncorrect}
       </div>
     );
   }

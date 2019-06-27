@@ -138,10 +138,12 @@ describe(`User story: Answer feedback`, function() {
         const [languageHeadFixture, incorrectFixture] = fixtures;
 
         cy.get('main').within($main => {
-          // cy.get('.DisplayScore p').should(
-          //   'have.text',
-          //   `Your total score is: ${incorrectFixture.totalScore}`
-          // );
+          cy.get('.DisplayScore p').should(
+            'have.text',
+            `Your total score is: ${incorrectFixture.totalScore}`
+          );
+
+          // cy.get('h2').should('have.text', `You were correct! :D`);
           cy.get('.second-h2').should('have.text', `You were correct! :D`);
           cy.get('.DisplayFeedback p').should(
             'have.text',
