@@ -13,6 +13,16 @@
   text-align: center;
 }
 
+.Learning__guess {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.try-another {
+  margin: 0 auto 8px auto;
+  display: block;
+}
+
 .Learning__prompt {
   text-align: center;
 }

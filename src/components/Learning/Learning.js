@@ -24,7 +24,6 @@ class Learning extends Component {
     event.preventDefault();
     const { guess } = this.state;
     LanguageApiService.postGuess(guess).then(response => {
-      console.log(this.state, this.props);
       const {
         answer,
         desk,
@@ -94,12 +93,14 @@ class Learning extends Component {
         <div className='DisplayFeedback'>
           {this.state.answer && (
             <div>
-              <p>
+              <p className='Learning__guess'>
                 {`The correct translation for ${this.props.head.nextWord} was ${
                   this.state.answer
                 } and you chose ${this.state.guess}!`}
               </p>
-              <button className='try-another'>Try another word!</button>
+              <Button type='submit' className='try-another'>
+                Try another word!
+              </Button>
             </div>
           )}
         </div>{' '}
