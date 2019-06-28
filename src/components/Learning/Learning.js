@@ -7,7 +7,6 @@ import LanguageApiService from '../../services/language-api-service';
 class Learning extends Component {
   constructor(props) {
     super(props);
-    let correctIncorrect;
     this.state = {
       guess: '',
       answer: '',
