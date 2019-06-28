@@ -13,6 +13,7 @@ class Learning extends Component {
       answer: '',
       isCorrect: '',
       nextWord: this.props.head.nextWord,
+      currentWord: '',
       totalScore: this.props.head.totalScore,
       wordCorrectCount: this.props.head.wordCorrectCount,
       wordIncorrectCount: this.props.head.wordIncorrectCount,
@@ -24,6 +25,7 @@ class Learning extends Component {
   postGuessHandler = event => {
     event.preventDefault();
     const { guess } = this.state;
+    this.setState({ currentWord: this.state.nextWord });
     LanguageApiService.postGuess(guess).then(response => {
       const {
         answer,
@@ -80,6 +82,8 @@ class Learning extends Component {
   render() {
     return (
       <div className='Learning'>
+        {' '}
+        nextWord,
         <div className='Learning__word-stat'>
           <h4 className='Learning__correct'>
             You have answered this word correctly {this.state.wordCorrectCount}{' '}
@@ -103,7 +107,7 @@ class Learning extends Component {
           {this.state.answer && (
             <div>
               <p className='Learning__guess'>
-                {`The correct translation for ${this.props.head.nextWord} was ${
+                {`The correct translation for ${this.state.currentWord} was ${
                   this.state.answer
                 } and you chose ${this.state.guess}!`}
               </p>
