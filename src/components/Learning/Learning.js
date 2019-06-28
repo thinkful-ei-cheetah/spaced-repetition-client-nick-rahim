@@ -139,7 +139,7 @@ class Learning extends Component {
             </div>
           </form>
         )}
-        {this.correctIncorrect}
+        {!this.state.showinput && this.correctIncorrect}
       </div>
     );
   }
