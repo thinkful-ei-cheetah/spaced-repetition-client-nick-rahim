@@ -5,6 +5,8 @@ import './Learning.css';
 import LanguageApiService from '../../services/language-api-service';
 
 class Learning extends Component {
+  static correctIncorrect;
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +84,6 @@ class Learning extends Component {
     return (
       <div className='Learning'>
         {' '}
-        nextWord,
         <div className='Learning__word-stat'>
           <h4 className='Learning__correct'>
             You have answered this word correctly {this.state.wordCorrectCount}{' '}
