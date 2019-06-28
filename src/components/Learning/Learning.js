@@ -12,11 +12,12 @@ class Learning extends Component {
       guess: '',
       answer: '',
       isCorrect: '',
-      nextWord: '',
+      nextWord: this.props.head.nextWord,
       totalScore: this.props.head.totalScore,
       wordCorrectCount: this.props.head.wordCorrectCount,
       wordIncorrectCount: this.props.head.wordIncorrectCount,
-      correctIncorrect: ''
+      correctIncorrect: '',
+      showinput: true
     };
   }
 
@@ -26,7 +27,6 @@ class Learning extends Component {
     LanguageApiService.postGuess(guess).then(response => {
       const {
         answer,
-        desk,
         isCorrect,
         nextWord,
         totalScore,
@@ -38,7 +38,6 @@ class Learning extends Component {
 
       this.setState({
         answer,
-        desk,
         isCorrect,
         nextWord,
         totalScore,
@@ -46,6 +45,16 @@ class Learning extends Component {
         wordIncorrectCount
       });
     });
+    this.setState({ showinput: false });
+  };
+
+  handleNextClick = event => {
+    LanguageApiService.getHead().then(response => {
+      const { wordCorrectCount, wordIncorrectCount } = response;
+      this.setState({ wordCorrectCount, wordIncorrectCount });
+    });
+    this.setState({ showinput: true });
+    this.setState({ answer: '' });
   };
 
   rightWrong = answer => {
@@ -88,7 +97,7 @@ class Learning extends Component {
         </div>
         <div className='Learning__prompt'>
           <h2>Translate the word:</h2>
-          <span className='Learning__word'>{this.props.head.nextWord}</span>
+          <span className='Learning__word'>{this.state.nextWord}</span>
         </div>
         <div className='DisplayFeedback'>
           {this.state.answer && (
@@ -98,32 +107,38 @@ class Learning extends Component {
                   this.state.answer
                 } and you chose ${this.state.guess}!`}
               </p>
-              <Button type='submit' className='try-another'>
+              <Button
+                type='submit'
+                className='try-another'
+                onClick={event => this.handleNextClick(event)}
+              >
                 Try another word!
               </Button>
             </div>
           )}
         </div>{' '}
-        <form
-          className='Learning__answer-form'
-          onSubmit={event => this.postGuessHandler(event)}
-        >
-          <Label
-            className='Learning__answer-form-label'
-            htmlFor='learn-guess-input'
+        {this.state.showinput && (
+          <form
+            className='Learning__answer-form'
+            onSubmit={event => this.postGuessHandler(event)}
           >
-            What's the translation for this word?
-          </Label>
-          <div className='Learning__answer-form-inputs'>
-            <Input
-              id='learn-guess-input'
-              type='text'
-              required
-              onChange={event => this.updateGuess(event.target.value)}
-            />
-            <Button type='submit'>Submit your answer</Button>
-          </div>
-        </form>
+            <Label
+              className='Learning__answer-form-label'
+              htmlFor='learn-guess-input'
+            >
+              What's the translation for this word?
+            </Label>
+            <div className='Learning__answer-form-inputs'>
+              <Input
+                id='learn-guess-input'
+                type='text'
+                required
+                onChange={event => this.updateGuess(event.target.value)}
+              />
+              <Button type='submit'>Submit your answer</Button>
+            </div>
+          </form>
+        )}
         {this.correctIncorrect}
       </div>
     );
